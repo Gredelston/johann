@@ -1,6 +1,7 @@
 import tone
 
 class VocalType(object):
+    """Abstract representation of a vocal range, such as Soprano or Alto."""
     def __init__(self, name, low_note, high_note):
         self.name = name
         self.low_note = low_note
@@ -24,6 +25,7 @@ VOCAL_TYPES = (
 
 
 class Voice(object):
+    """A voice part in a specific piece of music."""
     def __init__(self, vocal_type):
         self.vocal_type = vocal_type
     

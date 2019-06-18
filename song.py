@@ -5,6 +5,7 @@ import song_section
 import voice
 
 class Song(object):
+    """A complete piece of choral music."""
     def __init__(self):
         self.tempo = params.random_from_bounds(params.TEMPO_BOUNDS, 4)
 
