@@ -38,9 +38,8 @@ A4_MIDI_NUMBER = 69
 
 class Tone(object):
     """Abstract representation of a pitch."""
-    def __init__(self, name):
-        self.name = name
-        self.midi_number = get_midi_number(name)
+    def __init__(self, midi_number):
+        self.midi_number = midi_number
         self.freq = midi_number_to_freq(self.midi_number)
     
     def __eq__(self, other):
@@ -52,20 +51,32 @@ class Tone(object):
     def __gt__(self, other):
         return self.midi_number > other.midi_number
     
+    def __sub__(self, other):
+        """Subtract to determine the semitone distance between two tones."""
+        return self.midi_number - other.midi_number
 
-def get_midi_number(name):
+
+def midi_number_to_freq(midi_number):
+    """Given a midi number, calculate the frequency in Hz."""
+    semitones_above_a4 = midi_number - A4_MIDI_NUMBER
+    return A4_FREQUENCY * (SEMITONE_RATIO ** semitones_above_a4)
+    
+
+def name_to_midi_number(name):
+    """Given a pitch name (e.g. 'A4'), calculate its midi number."""
     pitch = name[:-1]
     octave = int(name[-1])
     if octave == 2:
         return MIDI_NUMBERS[name]
     elif octave < 2:
         one_octave_higher_name = pitch + str(octave + 1)
-        return get_midi_number(one_octave_higher_name) - 12
+        return name_to_midi_number(one_octave_higher_name) - 12
     elif octave > 2:
         one_octave_lower_name = pitch + str(octave - 1)
-        return get_midi_number(one_octave_lower_name) + 12
+        return name_to_midi_number(one_octave_lower_name) + 12
 
 
-def midi_number_to_freq(midi_number):
-    semitones_above_a4 = midi_number - A4_MIDI_NUMBER
-    return A4_FREQUENCY * (SEMITONE_RATIO ** semitones_above_a4)
+def name_to_tone(name):
+    """Given a pitch name (e.g. 'A4'), create a Tone."""
+    midi_number = name_to_midi_number(name)
+    return Tone(midi_number)

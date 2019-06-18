@@ -18,10 +18,10 @@ class VocalType(object):
 
 
 VOCAL_TYPES = (
-    VocalType('Soprano', tone.Tone('C4'), tone.Tone('G5')),
-    VocalType('Alto', tone.Tone('G3'), tone.Tone('D5')),
-    VocalType('Tenor', tone.Tone('C3'), tone.Tone('G4')),
-    VocalType('Bass', tone.Tone('E2'), tone.Tone('C4')))
+    VocalType('Soprano', tone.name_to_tone('C4'), tone.name_to_tone('G5')),
+    VocalType('Alto', tone.name_to_tone('G3'), tone.name_to_tone('D5')),
+    VocalType('Tenor', tone.name_to_tone('C3'), tone.name_to_tone('G4')),
+    VocalType('Bass', tone.name_to_tone('E2'), tone.name_to_tone('C4')))
 
 
 class Voice(object):
