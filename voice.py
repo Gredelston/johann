@@ -1,11 +1,13 @@
 import tone
+import vocal_phrase
 
 class Voice(object):
-    """A voice part in a specific piece of music."""
-    def __init__(self, name, low_tone, high_tone):
+    """A voice part in a song."""
+    def __init__(self, name, low_tone_name, high_tone_name, song):
         self.name = name
-        self.low_tone = low_tone
-        self.high_tone = high_tone
+        self.low_tone = tone.name_to_tone(low_tone_name)
+        self.high_tone = tone.name_to_tone(high_tone_name)
+        self.phrases = [vocal_phrase.VocalPhrase()]
     
     def get_name(self):
         return self.name
@@ -17,10 +19,10 @@ class Voice(object):
         return (self.low_tone, self.high_tone)
 
 
-def create_four_voices():
+def create_four_voices(song):
     return (
-        Voice('Soprano', tone.name_to_tone('C4'), tone.name_to_tone('G5')),
-        Voice('Alto', tone.name_to_tone('G3'), tone.name_to_tone('D5')),
-        Voice('Tenor', tone.name_to_tone('C3'), tone.name_to_tone('G4')),
-        Voice('Bass', tone.name_to_tone('E2'), tone.name_to_tone('C4'))
+        Voice('Soprano', 'C4', 'G5', song),
+        Voice('Alto', 'G3', 'D5', song),
+        Voice('Tenor', 'C3', 'G4', song),
+        Voice('Bass', 'E2', 'C4', song)
     )

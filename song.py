@@ -1,7 +1,7 @@
 import random
 
 import params
-import song_section
+import phrase
 import voice
 
 class Song(object):
@@ -10,10 +10,10 @@ class Song(object):
         """Initial setup for the song. Establish heavy constraints."""
         self.tempo = params.random_from_bounds(params.TEMPO_BOUNDS, 4)
 
-        num_sections = params.random_from_bounds(params.NUM_SECTIONS_BOUNDS)
-        section_length = random.choice(params.SECTION_LENGTHS)
-        self.sections = []
-        for _ in range(num_sections):
-            self.sections.append(song_section.SongSection(section_length))
+        num_phrases = params.random_from_bounds(params.NUM_PHRASES_BOUNDS)
+        beats_per_phrase = random.choice(params.PHRASE_LENGTHS)
+        self.phrases = []
+        for _ in range(num_phrases):
+            self.phrases.append(phrase.Phrase(beats_per_phrase))
 
-        self.voices = voice.create_four_voices()
+        self.voices = voice.create_four_voices(self)

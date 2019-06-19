@@ -1,0 +1,2 @@
+class VocalPhrase(object):
+    pass
