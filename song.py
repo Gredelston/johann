@@ -17,3 +17,9 @@ class Song(object):
             self.phrases.append(phrase.Phrase(beats_per_phrase))
 
         self.voices = voice.create_four_voices(self)
+    
+    def get_num_phrases(self):
+        return len(self.phrases)
+    
+    def get_phrase(self, num):
+        return self.phrases[num]

@@ -7,7 +7,13 @@ class Voice(object):
         self.name = name
         self.low_tone = tone.name_to_tone(low_tone_name)
         self.high_tone = tone.name_to_tone(high_tone_name)
-        self.phrases = [vocal_phrase.VocalPhrase()]
+        self.song = song
+
+        # Define vocal phrases
+        self.phrases = []
+        for phrase_num in range(self.song.get_num_phrases()):
+            self.phrases.append(vocal_phrase.VocalPhrase(
+                self, self.song.get_phrase(phrase_num)))
     
     def get_name(self):
         return self.name
