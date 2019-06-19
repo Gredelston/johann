@@ -22,4 +22,5 @@ def create_four_voices():
         Voice('Soprano', tone.name_to_tone('C4'), tone.name_to_tone('G5')),
         Voice('Alto', tone.name_to_tone('G3'), tone.name_to_tone('D5')),
         Voice('Tenor', tone.name_to_tone('C3'), tone.name_to_tone('G4')),
-        Voice('Bass', tone.name_to_tone('E2'), tone.name_to_tone('C4')))
+        Voice('Bass', tone.name_to_tone('E2'), tone.name_to_tone('C4'))
+    )

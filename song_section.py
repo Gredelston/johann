@@ -1,4 +1,8 @@
+import chord
+
 class SongSection(object):
     """A discrete chunk of a song, ending in a cadence."""
     def __init__(self, length):
-        pass
+        self.chords = []
+        for _ in range(length):
+            self.chords.append(chord.Chord())
