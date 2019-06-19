@@ -15,6 +15,4 @@ class Song(object):
         for i in range(num_sections):
             self.sections.append(song_section.SongSection(section_length))
 
-        self.voices = []
-        for vocal_type in voice.VOCAL_TYPES:
-            self.voices.append(voice.Voice(vocal_type))
+        self.voices = voice.create_four_voices()
